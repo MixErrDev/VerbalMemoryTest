@@ -1,0 +1,34 @@
+<button class="button back_button" (click)="goBack()">
+    <img src="assets/img/icons8-стрелка-50.png" alt="" />
+  </button>
+  <div id="root" class="root">
+    <div class="index-container"> 
+      <div class="main" id="main">
+        <div class="wrapper">
+          <div class="test-running">
+            <h2 class="test-title">Пробное задание</h2>
+            <p style="margin: 20px 0px; text-align: center">
+              Перед основным тестированием ваших когнитивных способностей вы пройдете "Пробный тест" (его результат не учитывается при анализе тестируемых способностей, это проба).
+            </p>
+            <p style="margin: 20px 0px; text-align: center">
+              Нажмите "Начать", когда будете готовы. <br> <br>
+              Нажмите "Пропустить", чтобы перейти к основному заданию
+            </p>
+            <button
+              class="button button--yellow-white"
+              (click)="navigateToTrialProcess()"
+            >
+              Начать
+            </button>
+            <button
+              class="skipTrialProcess"
+              (click)="skipTrialProcess()"
+            >
+              Пропустить
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

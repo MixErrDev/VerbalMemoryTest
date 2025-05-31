@@ -1,0 +1,57 @@
+<h1>Список ассетов</h1>
+<button (click)="addAsset()">Добавить</button>
+<table>
+     
+    <tr>
+        <th>Id</th>
+        <th>Ссылка на картинку</th>
+        <th>Ссылка на аудио</th>
+        <th>Символ</th>
+        <th>Слово</th>
+        <th></th>
+    </tr>
+    @for(asset of assets; track $index){
+        <tr>
+            <ng-template [ngTemplateOutlet]="loadTemplate(asset)" [ngTemplateOutletContext]="{ $implicit: asset}">
+            </ng-template>
+        </tr>
+    }
+</table>
+<div>{{statusMessage}}</div>
+     
+     
+<!--шаблон для чтения-->
+<ng-template #readOnlyTemplate let-asset>
+    <td>{{asset._id}}</td>
+    <td>{{asset.urlImage}}</td>
+    <td>{{asset.urlAudio}}</td>
+    <td>{{asset.symbol}}</td>
+    <td>{{asset._word}}</td>
+    <td>
+        <button (click)="editAsset(asset)">Изменить</button> 
+        <button (click)="deleteAsset(asset)">Удалить</button>
+    </td>
+</ng-template>
+    
+<!--шаблон для редактирования-->
+<ng-template #editTemplate>
+    <td>
+        <input [(ngModel)]="editedAsset._id" readonly disabled />
+    </td>
+    <td>
+        <input [(ngModel)]="editedAsset.urlImage" />
+    </td>
+    <td>
+        <input [(ngModel)]="editedAsset.urlAudio" />
+    </td>
+    <td>
+        <input [(ngModel)]="editedAsset.symbol" />
+    </td>
+    <td>
+        <input [(ngModel)]="editedAsset._word" />
+    </td>
+    <td>
+        <button (click)="saveAsset()">Сохранить</button>
+        <button (click)="cancel()">Отмена</button>
+    </td>
+</ng-template>

@@ -1,0 +1,33 @@
+<button class="button back_button" (click)="goBack()">
+    <img src="assets/img/icons8-arrow-50.png" alt="" />
+  </button>
+  <div id="root" class="root">
+    <div class="index-container"> 
+      <div class="main" id="main">
+        <div class="wrapper">
+          <div class="test-running">
+            <h2 class="test-title">Trial Task</h2>
+            <p style="margin: 20px 0px; text-align: center">
+              Before the main testing of your cognitive abilities, you will take a "Trial Test" (its result is not taken into account in the analysis of the tested abilities, this is a practice).
+            </p>
+            <p style="margin: 20px 0px; text-align: center">
+              Click "Start" when you are ready. <br> <br>
+              Click "Skip" to proceed to the main task
+            </p>
+            <button
+              class="button button--yellow-white"
+              (click)="navigateToTrialProcess()"
+            >
+              Start
+            </button>
+            <button
+              class="skipTrialProcess"
+              (click)="skipTrialProcess()"
+            >
+              Skip
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> 

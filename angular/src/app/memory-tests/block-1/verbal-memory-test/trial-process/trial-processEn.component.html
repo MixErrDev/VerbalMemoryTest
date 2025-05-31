@@ -1,0 +1,47 @@
+<!-- <button class="button back_button" (click)="goBack()">
+    <img src="assets/img/icons8-arrow-50.png" alt="" />
+  </button> -->
+  <div id="root" class="root">
+    <div class="index-container">
+      <main class="main" id="main">
+        <section class="section">
+          <div class="wrapper">
+
+            <div class="test-running">
+              <h2 style="margin: 20px 0px; text-align: center" class="test-running__title">
+                Trial Task
+              </h2>
+              <div id="info">Remember the picture, then click on the correct letter!</div>
+              <div id="countdown" class="countdown-container"></div>
+
+              <div class="image-block">
+                  <img class="image-block__inner" id="image-showed">
+              </div>
+
+              <div class="first-letter-container">
+                  <div class="letters-block">
+                      <button class="letters-block__item"></button>
+                      <button class="letters-block__item"></button>
+                      <button class="letters-block__item"></button>
+                      <button class="letters-block__item"></button>
+                  </div>
+              </div>
+              
+              <button id="answerButton" class="visual-memory-button">
+                <img class="answerImage" id="img-showed" alt="" >
+              </button>
+              <div class="answerResult" style="position: absolute;
+            top: 60%; /* increase the top value to move the element down */
+            left: 50%;
+            transform: translate(-50%, -50%);
+            height: 20px;">
+                <div id="correct">✅</div>
+                <div id="incorrect">❌</div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+      </main>
+    </div>
+  </div> 

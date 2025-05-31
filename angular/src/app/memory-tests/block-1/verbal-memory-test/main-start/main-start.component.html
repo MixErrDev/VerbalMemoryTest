@@ -1,0 +1,24 @@
+<button class="button back_button" (click)="goBack()">
+    <img src="assets/img/icons8-стрелка-50.png" alt="" />
+  </button>
+  
+  <div id="root" class="root">
+    <div class="index-container">
+      <main class="main" id="main">
+        <div class="wrapper">
+          <div class="test-running">
+            <h2 class="test-title">Main task</h2>
+            <p style="margin: 20px 0px; text-align: center">
+                Click "Begin" when you're ready.
+            </p>
+            <button
+              class="button button--yellow-white"
+              (click)="navigateToMainProcess()"
+            >
+              Begin
+            </button>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>

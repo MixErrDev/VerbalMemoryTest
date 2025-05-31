@@ -1,0 +1,51 @@
+<div id="root" class="root">
+  <div class="index-container">
+    <main class="main" id="main">
+      <section class="section">
+        <div class="wrapper">
+          <div class="section__text-container">
+            <h2 class="test-title">Регистрация</h2>
+          </div>
+          <div class="main-container">
+            <form class="registration-form" style="display: flex; flex-direction: column; gap: 20px; width: 100%; max-width: 400px; margin: 0 auto;">
+              <div style="display: flex; flex-direction: column; gap: 10px;">
+                <label style="font-size: 16px; font-weight: 600;">Имя</label>
+                <input type="text" style="padding: 12px; border: 2px solid #e6e6e6; border-radius: 8px; font-size: 16px; width: 100%;" placeholder="Введите ваше имя">
+              </div>
+              
+              <div style="display: flex; flex-direction: column; gap: 10px;">
+                <label style="font-size: 16px; font-weight: 600;">Email</label>
+                <input type="email" style="padding: 12px; border: 2px solid #e6e6e6; border-radius: 8px; font-size: 16px; width: 100%;" placeholder="Введите ваш email">
+              </div>
+              
+              <div style="display: flex; flex-direction: column; gap: 10px;">
+                <label style="font-size: 16px; font-weight: 600;">Возраст</label>
+                <input type="number" style="padding: 12px; border: 2px solid #e6e6e6; border-radius: 8px; font-size: 16px; width: 100%;" placeholder="Введите ваш возраст">
+              </div>
+
+              <div style="display: flex; flex-direction: column; gap: 10px;">
+                <label style="font-size: 16px; font-weight: 600;">Пол</label>
+                <div style="display: flex; gap: 20px;">
+                  <label class="form-question-container__label">
+                    <input type="radio" name="gender" value="male">
+                    <span class="input-indicator"></span>
+                    Мужской
+                  </label>
+                  <label class="form-question-container__label">
+                    <input type="radio" name="gender" value="female">
+                    <span class="input-indicator"></span>
+                    Женский
+                  </label>
+                </div>
+              </div>
+
+              <button type="submit" class="button button--yellow-white" style="margin-top: 20px; margin-left: auto; margin-right: auto;">
+                Начать тест
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+</div>

@@ -1,0 +1,28 @@
+<!-- <button class="button swith_theme">Switch theme</button> -->
+<div id="root" class="root">
+  <div class="index-container">
+    <main class="main" id="main">
+      <section class="section">
+        <div class="wrapper">
+          <div class="section__text-container">
+              <h2 class="test-title">{{ title }}</h2>
+            </div>
+            <div class="instructions-list">
+              <div class="instructions-list__item" *ngFor="let item of instructions; let i = index">
+                <div class="instructions-list__item-num">{{ i + 1 }}</div>
+                <div class="instructions-list__item-text-container">
+                  <h3 class="instructions-list__item-title">{{ item.title }}</h3>
+                  <p class="instructions-list__item-text" [innerHTML]="item.text"></p>
+                </div>
+              </div>
+            </div>
+            <div class="instructions-continue-container">
+              <button id="nextButton" class="button button--yellow-white">
+                  Поехали!
+                </button>
+            </div>
+        </div>
+      </section>
+    </main>
+  </div>
+</div>

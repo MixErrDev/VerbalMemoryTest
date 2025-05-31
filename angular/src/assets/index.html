@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .stage {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .word {
+            margin: 20px;
+        }
+        .word img {
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="counter">3</h1>
+    <div class="stage" id="stage-1">
+        <div class="word">
+            <img src="pictures/ведро.jpg" alt="ведро">
+            <p>ведро</p>
+        </div>
+        <div class="word">
+            <img src="pictures/гриб.jpg" alt="гриб">
+            <p>гриб</p>
+        </div>
+        <div class="word">
+            <img src="pictures/груша 2.jpeg" alt="груша">
+            <p>груша</p>
+        </div>
+        <div class="word">
+            <img src="pictures/диван.jpg" alt="диван">
+            <p>диван</p>
+        </div>
+    </div>
+    <div class="stage" id="stage-2" style="display: none;">
+        <p id="instruction">Найдите слова, которые запомнили</p>
+        <div class="word">
+            <img src="pictures/зебра.jpg" alt="зебра">
+            <p>зебра</p>
+        </div>
+        <div class="word">
+            <img src="pictures/коктейль 2.jpg" alt="коктейль">
+            <p>коктейль</p>
+        </div>
+        <div class="word">
+            <img src="pictures/ведро.jpg" alt="ведро">
+            <p>ведро</p>
+        </div>
+        <div class="word">
+            <img src="pictures/лист.jpg" alt="лист">
+            <p>лист</p>
+        </div>
+        <div class="word">
+            <img src="pictures/гриб.jpg" alt="гриб">
+            <p>гриб</p>
+        </div>
+        <div class="word">
+            <img src="pictures/груша 2.jpeg" alt="груша">
+            <p>груша</p>
+        </div>
+        <div class="word">
+            <img src="pictures/Слон.jpg" alt="Слон">
+            <p>Слон</p>
+        </div>
+        <div class="word">
+            <img src="pictures/диван.jpg" alt="диван">
+            <p>диван</p>
+        </div>
+    </div>
+
+    <script>
+        let counter = 3;
+        let interval = setInterval(() => {
+            counter--;
+            document.getElementById("counter").innerText = counter;
+            if (counter === 0) {
+                clearInterval(interval);
+                document.getElementById("stage-1").style.display = "none";
+                document.getElementById("stage-2").style.display = "block";
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
