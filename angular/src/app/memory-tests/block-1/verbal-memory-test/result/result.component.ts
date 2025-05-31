@@ -56,6 +56,6 @@ export class VerbalResultComponent {
 
 
   finishBtn() {
-    this.route.navigate([''])
+    this.route.navigate(['login'])
   }
 }

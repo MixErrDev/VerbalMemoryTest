@@ -9,6 +9,9 @@ import { TrialProcessComponent } from './memory-tests/block-1/verbal-memory-test
 import { MainStartComponent } from './memory-tests/block-1/verbal-memory-test/main-start/main-start.component';
 import { MainProcessComponent } from './memory-tests/block-1/verbal-memory-test/main-process/main-process.component';
 import { RegistrationComponent } from './memory-tests/block-1/verbal-memory-test/registration/registration.component';
+import { LoginComponent } from './memory-tests/block-1/verbal-memory-test/login/login.component';
+import { UserResultsComponent } from './memory-tests/block-1/verbal-memory-test/user-results/user-results.component';
+
 
 export const verbalTestTrialRoutes: Routes = [
     {path: 'start', component: TrialStartComponent},
@@ -20,8 +23,10 @@ export const verbalTestMainRoutes: Routes = [
 ]
 
 export const verbalTestRoutes: Routes = [
-    {path: '', component: RegistrationComponent},
-    {path: 'instruction', component: VerbalInstructionComponent},
+    {path: 'registration', component: RegistrationComponent},
+    {path: 'login', component: LoginComponent},
+    {path: 'user-results', component: UserResultsComponent},
+    {path: '', component: VerbalInstructionComponent},
     {path: 'trial', children: verbalTestTrialRoutes},
     {path: 'main', children: verbalTestMainRoutes},
     {path: 'result', component: VerbalResultComponent},
