@@ -1,11 +1,17 @@
 <?php
-header('Content-Type: application/json');
+require_once 'cors.php';
+
+// Включаем отображение ошибок для отладки
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 // Получаем данные из POST запроса
 $data = json_decode(file_get_contents('php://input'), true);
 $email = $data['email'] ?? '';
 
 if (empty($email)) {
+    http_response_code(400);
     echo json_encode(['success' => false, 'error' => 'Email не указан']);
     exit;
 }
@@ -19,34 +25,19 @@ $_SESSION['verification_code'] = $verificationCode;
 $_SESSION['verification_email'] = $email;
 $_SESSION['verification_time'] = time();
 
-// Настройки для отправки письма
-$to = $email;
-$subject = 'Подтверждение email для игры Кликер';
-$message = "
-<html>
-<head>
-    <title>Подтверждение email</title>
-</head>
-<body>
-    <h2>Подтверждение email для игры Кликер</h2>
-    <p>Ваш код подтверждения: <strong>{$verificationCode}</strong></p>
-    <p>Код действителен в течение 10 минут.</p>
-    <p>Если вы не запрашивали подтверждение email, проигнорируйте это письмо.</p>
-</body>
-</html>
-";
+// Для тестирования, сохраняем код в файл
+$logFile = 'verification_codes.log';
+$logMessage = date('Y-m-d H:i:s') . " - Email: {$email}, Code: {$verificationCode}\n";
+file_put_contents($logFile, $logMessage, FILE_APPEND);
 
-// Заголовки письма
-$headers = "MIME-Version: 1.0\r\n";
-$headers .= "Content-type: text/html; charset=utf-8\r\n";
-$headers .= "From: Clicker Game <noreply@clicker.com>\r\n";
-
-// Отправляем письмо
-$mailSent = mail($to, $subject, $message, $headers);
-
-if ($mailSent) {
-    echo json_encode(['success' => true]);
-} else {
-    echo json_encode(['success' => false, 'error' => 'Ошибка отправки письма']);
-}
+// Возвращаем код в ответе для тестирования
+http_response_code(200);
+echo json_encode([
+    'success' => true,
+    'message' => 'Код подтверждения отправлен',
+    'debug' => [
+        'code' => $verificationCode,
+        'email' => $email
+    ]
+]);
 ?> 

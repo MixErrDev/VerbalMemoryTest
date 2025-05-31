@@ -12,28 +12,40 @@ import { RegistrationComponent } from './memory-tests/block-1/verbal-memory-test
 import { LoginComponent } from './memory-tests/block-1/verbal-memory-test/login/login.component';
 import { UserResultsComponent } from './memory-tests/block-1/verbal-memory-test/user-results/user-results.component';
 
-
-export const verbalTestTrialRoutes: Routes = [
-    {path: 'start', component: TrialStartComponent},
-    {path: 'process', component: TrialProcessComponent}
-]
-export const verbalTestMainRoutes: Routes = [
-    {path: 'start', component: MainStartComponent},
-    {path: 'process', component: MainProcessComponent}
-]
-
 export const verbalTestRoutes: Routes = [
-    {path: 'registration', component: RegistrationComponent},
-    {path: 'login', component: LoginComponent},
-    {path: 'user-results', component: UserResultsComponent},
     {path: '', component: VerbalInstructionComponent},
-    {path: 'trial', children: verbalTestTrialRoutes},
-    {path: 'main', children: verbalTestMainRoutes},
+    {
+        path: 'trial',
+        children: [
+            {path: 'start', component: TrialStartComponent},
+            {path: 'process', component: TrialProcessComponent}
+        ]
+    },
+    {
+        path: 'main',
+        children: [
+            {path: 'start', component: MainStartComponent},
+            {path: 'process', component: MainProcessComponent}
+        ]
+    },
     {path: 'result', component: VerbalResultComponent},
-
-]
+    {path: 'login', component: LoginComponent},
+    {path: 'registration', component: RegistrationComponent},
+    {path: 'user-results', component: UserResultsComponent}
+];
 
 export const routes: Routes = [
-    {path: '', children: verbalTestRoutes},
-    {path: 'assets', component: AssetsComponent}
+    {
+        path: 'verbal-memory',
+        children: verbalTestRoutes
+    },
+    {
+        path: 'assets',
+        component: AssetsComponent
+    },
+    {
+        path: '',
+        redirectTo: 'verbal-memory',
+        pathMatch: 'full'
+    }
 ];

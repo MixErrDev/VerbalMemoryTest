@@ -1,15 +1,55 @@
-<app-instruction
-  [title]="'Verbal memory test'"
-  [instructions]="[
-    { title: 'Cognitive abilities tested:', text: 'Visual perception, verbal memory, information processing speed, response time.' },
-    { title: 'Duration:', text: 'Approximately 60-210 seconds.' },
-    { title: 'Target:', text: 'Determine the volume of verbal memory.' },
-    { title: 'Instructions for the task:', text: '
-    1) A picture will appear on the screen for a short period of time, remember this picture. <br><br>
-    2) After the picture disappears, four letters will appear on the screen.<br><br>
-    3) One of them is the first letter of the word that appears in the form of a picture.<br><br>
-    4) Click on that letter as quickly as you can.
-      '
-    }
-  ]"
-></app-instruction>
+<div class="layout-wrapper">
+  <div id="root" class="root">
+    <div class="index-container">
+      <div class="main" id="main">
+        <div class="wrapper">
+          <section class="main-container">
+            <div class="content-wrapper">
+              <h2 class="test-title">Тест на вербальную память</h2>
+              
+              <div class="instructions-container">
+                <div class="instruction-item">
+                  <div class="instruction-number">1</div>
+                  <div class="instruction-text-container">
+                    <h3 class="instruction-title">Тестируемые когнитивные способности:</h3>
+                    <p class="instruction-text">Зрительное восприятие, вербальная память, скорость обработки информации, время отклика.</p>
+                  </div>
+                </div>
+                <div class="instruction-item">
+                  <div class="instruction-number">2</div>
+                  <div class="instruction-text-container">
+                    <h3 class="instruction-title">Продолжительность:</h3>
+                    <p class="instruction-text">Примерно 60-210 секунд.</p>
+                  </div>
+                </div>
+                <div class="instruction-item">
+                  <div class="instruction-number">3</div>
+                  <div class="instruction-text-container">
+                    <h3 class="instruction-title">Цель:</h3>
+                    <p class="instruction-text">Определить объем вербальной памяти.</p>
+                  </div>
+                </div>
+                <div class="instruction-item">
+                  <div class="instruction-number">4</div>
+                  <div class="instruction-text-container">
+                    <h3 class="instruction-title">Инструкция к заданию:</h3>
+                    <p class="instruction-text">
+                      1) На экране на небольшой промежуток времени появится картинка, запомните эту картинку.<br>
+                      2) После того, как картинка исчезнет, на экране появятся четыре буквы.<br>
+                      3) Одной из них является первая буква слова, картинка которого была показана ранее.<br>
+                      4) Нажмите на эту букву как можно быстрее.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="instructions-continue-container">
+                <button class="button button--yellow-white" (click)="navigateToTrialStart()">Поехали!</button>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

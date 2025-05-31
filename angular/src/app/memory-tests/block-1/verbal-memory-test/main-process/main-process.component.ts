@@ -125,7 +125,7 @@ export class MainProcessComponent implements OnInit, OnDestroy {
     if (this.clickCount === this.assetsCount){
       this.clickCount = 0;
       this.pointsService.setPoints(this.points);
-      this.router.navigate(['/result']);  
+      this.navigateToResult();
     }
   
     this.currentAsset = this.assets[this.clickCount];
@@ -208,6 +208,10 @@ export class MainProcessComponent implements OnInit, OnDestroy {
 
     }, 1000)
     
+  }
+
+  navigateToResult() {
+    this.router.navigate(['/verbal-memory/result']);
   }
 
 }

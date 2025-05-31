@@ -12,10 +12,10 @@ export class MainStartComponent {
 
   navigateToMainProcess(){
     console.log('click');
-    this.router.navigate(['/main/process']);
+    this.router.navigate(['/verbal-memory/main/process']);
   }
 
   goBack() {
-    this.router.navigate(['/trial/start']);
+    this.router.navigate(['/verbal-memory/trial/start']);
   }
 }
