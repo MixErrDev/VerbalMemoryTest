@@ -3,55 +3,128 @@
     <main class="main" id="main">
       <section class="section">
         <div class="wrapper">
-          <div class="section__text-container">
-            <h2 class="test-title">Регистрация</h2>
-          </div>
           <div class="main-container">
-            <form class="registration-form" style="display: flex; flex-direction: column; gap: 20px; width: 100%; max-width: 400px; margin: 0 auto;">
-              <div style="display: flex; flex-direction: column; gap: 10px;">
-                <label style="font-size: 16px; font-weight: 600;">Email</label>
-                <input type="email" style="padding: 12px; border: 2px solid #e6e6e6; border-radius: 8px; font-size: 16px; width: 100%;" placeholder="Введите ваш email">
-              </div>
-
-
-              <div style="display: flex; flex-direction: column; gap: 10px;">
-                <label style="font-size: 16px; font-weight: 600;">Пароль</label>
-                <input type="password" style="padding: 12px; border: 2px solid #e6e6e6; border-radius: 8px; font-size: 16px; width: 100%;" placeholder="Введите ваш пароль">
-              </div>
-
-              
-              <div style="display: flex; flex-direction: column; gap: 10px;">
-                <label style="font-size: 16px; font-weight: 600;">Имя</label>
-                <input type="text" style="padding: 12px; border: 2px solid #e6e6e6; border-radius: 8px; font-size: 16px; width: 100%;" placeholder="Введите ваше имя">
-              </div>
-              
-              
-              
-              <div style="display: flex; flex-direction: column; gap: 10px;">
-                <label style="font-size: 16px; font-weight: 600;">Возраст</label>
-                <input type="number" style="padding: 12px; border: 2px solid #e6e6e6; border-radius: 8px; font-size: 16px; width: 100%;" placeholder="Введите ваш возраст">
-              </div>
-
-              <div style="display: flex; flex-direction: column; gap: 10px;">
-                <label style="font-size: 16px; font-weight: 600;">Пол</label>
-                <div style="display: flex; gap: 20px;">
-                  <label class="form-question-container__label">
-                    <input type="radio" name="gender" value="male">
-                    <span class="input-indicator"></span>
-                    Мужской
-                  </label>
-                  <label class="form-question-container__label">
-                    <input type="radio" name="gender" value="female">
-                    <span class="input-indicator"></span>
-                    Женский
-                  </label>
+            <div class="registration-container">
+              <div class="registration-form">
+                <h2>Регистрация</h2>
+                
+                <div *ngIf="successMessage" style="color: green; font-size: 14px; text-align: center; margin-bottom: 15px;">
+                  {{ successMessage }}
                 </div>
-              </div>
+                
+                <div *ngIf="errorMessage" style="color: red; font-size: 14px; text-align: center; margin-bottom: 15px;">
+                  {{ errorMessage }}
+                </div>
 
-              <button type="submit" class="button button--yellow-white" style="margin-top: 20px; margin-left: auto; margin-right: auto;">
-                Зарегистрироваться
-              </button>
-            </form>
+                <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()" *ngIf="!showVerification">
+                  <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" formControlName="email" required>
+                    <div *ngIf="registrationForm.get('email')?.errors?.['required'] && registrationForm.get('email')?.touched" class="error-message">
+                      Email обязателен
+                    </div>
+                    <div *ngIf="registrationForm.get('email')?.errors?.['email'] && registrationForm.get('email')?.touched" class="error-message">
+                      Введите корректный email
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="password">Пароль</label>
+                    <div class="password-input">
+                      <input [type]="showPassword ? 'text' : 'password'" id="password" formControlName="password" required placeholder="Введите пароль">
+                      <button type="button" class="toggle-password" (click)="showPassword = !showPassword">
+                        <svg class="eye-icon" [class.show]="showPassword" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                          <path *ngIf="!showPassword" d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
+                          <path *ngIf="showPassword" d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
+                        </svg>
+                      </button>
+                    </div>
+                    <div *ngIf="registrationForm.get('password')?.errors?.['required'] && registrationForm.get('password')?.touched" class="error-message">
+                      Пароль обязателен
+                    </div>
+                    <div *ngIf="registrationForm.get('password')?.errors?.['minlength'] && registrationForm.get('password')?.touched" class="error-message">
+                      Пароль должен содержать минимум 9 символов
+                    </div>
+                    <div *ngIf="registrationForm.get('password')?.errors?.['pattern'] && registrationForm.get('password')?.touched" class="error-message">
+                      Пароль должен содержать заглавные и строчные буквы, а также цифры
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="confirmPassword">Подтверждение пароля</label>
+                    <div class="password-input">
+                      <input [type]="showConfirmPassword ? 'text' : 'password'" id="confirmPassword" formControlName="confirmPassword" required placeholder="Подтвердите пароль">
+                      <button type="button" class="toggle-password" (click)="showConfirmPassword = !showConfirmPassword">
+                        <svg class="eye-icon" [class.show]="showConfirmPassword" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                          <path *ngIf="!showConfirmPassword" d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
+                          <path *ngIf="showConfirmPassword" d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
+                        </svg>
+                      </button>
+                    </div>
+                    <div *ngIf="registrationForm.get('confirmPassword')?.errors?.['required'] && registrationForm.get('confirmPassword')?.touched" class="error-message">
+                      Подтверждение пароля обязательно
+                    </div>
+                    <div *ngIf="registrationForm.errors?.['mismatch'] && registrationForm.get('confirmPassword')?.touched" class="error-message">
+                      Пароли не совпадают
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="username">Имя пользователя</label>
+                    <input type="text" id="username" formControlName="username" required>
+                    <div *ngIf="registrationForm.get('username')?.errors?.['required'] && registrationForm.get('username')?.touched" class="error-message">
+                      Имя пользователя обязательно
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="age">Возраст</label>
+                    <input type="number" id="age" formControlName="age" required>
+                    <div *ngIf="registrationForm.get('age')?.errors?.['required'] && registrationForm.get('age')?.touched" class="error-message">
+                      Возраст обязателен
+                    </div>
+                    <div *ngIf="registrationForm.get('age')?.errors?.['min'] || registrationForm.get('age')?.errors?.['max']" class="error-message">
+                      Возраст должен быть от 1 до 120 лет
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="gender">Пол</label>
+                    <select id="gender" formControlName="gender" required>
+                      <option value="">Выберите пол</option>
+                      <option value="male">Мужской</option>
+                      <option value="female">Женский</option>
+                    </select>
+                    <div *ngIf="registrationForm.get('gender')?.errors?.['required'] && registrationForm.get('gender')?.touched" class="error-message">
+                      Выберите пол
+                    </div>
+                  </div>
+
+                  <button type="submit" class="button button--yellow-white" [disabled]="isLoading">
+                    <span *ngIf="!isLoading">Зарегистрироваться</span>
+                    <span *ngIf="isLoading">Загрузка...</span>
+                  </button>
+                </form>
+
+                <form [formGroup]="verificationForm" (ngSubmit)="verifyCode()" *ngIf="showVerification">
+                  <div class="form-group">
+                    <label for="code">Код подтверждения</label>
+                    <input type="text" id="code" formControlName="code" required maxlength="4" pattern="\d{4}">
+                    <div *ngIf="verificationForm.get('code')?.errors?.['required'] && verificationForm.get('code')?.touched" class="error-message">
+                      Введите код подтверждения
+                    </div>
+                    <div *ngIf="verificationForm.get('code')?.errors?.['pattern'] && verificationForm.get('code')?.touched" class="error-message">
+                      Код должен состоять из 4 цифр
+                    </div>
+                  </div>
+
+                  <button type="submit" class="button button--yellow-white" [disabled]="isLoading">
+                    <span *ngIf="!isLoading">Подтвердить</span>
+                    <span *ngIf="isLoading">Загрузка...</span>
+                  </button>
+                </form>
+              </div>
+            </div>
           </div>
         </div>
       </section>

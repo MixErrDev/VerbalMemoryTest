@@ -8,29 +8,37 @@
       <div class="main" id="main">
         <div class="wrapper">
           <section class="main-container">
-            <h2 class="test-title">Test results</h2>
-            <div class="results-container">
-              <div class="result-chart" [attr.style]="'--p: ' + percent + ';'">
-                {{ percent }}%
+            <div class="result-content">
+              <h2 class="test-title">Результаты тестирования</h2>
+              
+              <div class="results-container">
+                <div class="result-chart" [attr.style]="'--p: ' + percent + ';'">
+                  {{ percent }}%
+                </div>
+                <div class="results-text-container">
+                  <h3 class="results-title">{{ level }}</h3>
+                  <p class="results-text">
+                    {{ text }}
+                  </p>
+                </div>
               </div>
-              <div class="results-text-container">
-                <h3 class="results-title">{{ level }}</h3>
-                <p class="results-text">
-                  {{ text }}<br />
-                  <br />
-                </p>
+
+              <div *ngIf="saveError" class="error-message">
+                {{ saveError }}
               </div>
-            </div>
-            <div class="results-buttons">
-              <button class="button button--green" (click)="finishBtn()">
-                Complete
-              </button>
-              <button
-                class="button button--yellow-white"
-                (click)="backBtnRouter()"
-              >
-                Repeat
-              </button>
+
+              <div class="results-buttons">
+                <button class="button button--green" (click)="saveResult()" [disabled]="isSaving">
+                  {{ isSaving ? 'Сохранение...' : 'Сохранить результат' }}
+                </button>
+                <button
+                  class="button button--yellow-white"
+                  (click)="backBtnRouter()"
+                  [disabled]="isSaving"
+                >
+                  Повторить
+                </button>
+              </div>
             </div>
           </section>
         </div>

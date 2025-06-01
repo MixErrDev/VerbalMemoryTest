@@ -106,7 +106,7 @@ export class TrialProcessComponent implements OnInit, OnDestroy{
 
     if (this.clickCount === this.assetsCount){
       this.clickCount = 0;
-      this.router.navigate(['/main/start']);  
+      this.router.navigate(['/verbal-memory/main/start']);  
     }
   
     this.currentAsset = this.assets[this.clickCount];

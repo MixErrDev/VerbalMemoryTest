@@ -1,0 +1,38 @@
+<div class="user-profile-container">
+  <div class="welcome-section">
+    <h1>Здравствуйте, {{ userData?.username || 'Пользователь' }}!</h1>
+  </div>
+
+  <div class="user-info-section" *ngIf="userData">
+    <h2>Информация о пользователе</h2>
+    <div class="info-card">
+      <p><strong>Email:</strong> {{ userData.email }}</p>
+      <p><strong>Имя пользователя:</strong> {{ userData.username }}</p>
+      <p><strong>Возраст:</strong> {{ userData.age }}</p>
+      <p><strong>Пол:</strong> {{ userData.gender }}</p>
+    </div>
+  </div>
+
+  <div class="results-section">
+    <h2>Результаты предыдущих тестов</h2>
+    <div class="results-card" *ngIf="userResults.length > 0">
+      <table class="results-table">
+        <thead>
+          <tr>
+            <th>Дата</th>
+            <th>Результат</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let result of userResults">
+            <td>{{ result.date | date:'dd.MM.yyyy HH:mm' }}</td>
+            <td>{{ result.score }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p *ngIf="userResults.length === 0" class="no-results">
+      У вас пока нет результатов тестов
+    </p>
+  </div>
+</div> 

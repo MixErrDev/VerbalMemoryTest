@@ -13,15 +13,15 @@ export class TrialStartComponent {
 
   navigateToTrialProcess(){
     console.log('click');
-    this.router.navigate(['/trial/process']);
+    this.router.navigate(['/verbal-memory/trial/process']);
   }
 
   goBack() {
-    this.router.navigate(['']);
+    this.router.navigate(['/verbal-memory']);
   }
 
   skipTrialProcess(){
     console.log("Skipping trial task");
-    this.router.navigate(['/main/start']);
+    this.router.navigate(['/verbal-memory/main/start']);
   }
 }

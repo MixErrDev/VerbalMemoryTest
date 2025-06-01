@@ -15,13 +15,16 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 body {
-  font-family: "Open Sans", sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
   font-variation-settings:
     "wdth" 100;
   margin: 0;
+  line-height: 1.6;
+  color: #333;
+  background-color: #f5f5f5;
 }
 main {
   display: block;
@@ -254,21 +257,19 @@ legend {
   background: var(--bg-color);
   color: var(--text-color);
   transition: 0.3s;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 .index-container {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  width: 100%;
-  min-height: 100vh;
 }
 .wrapper {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  max-width: 1240px;
-  padding: 0 20px;
+  max-width: 1200px;
   margin: 0 auto;
+  padding: 0 20px;
 }
 .header {
   width: 100%;
@@ -391,10 +392,8 @@ legend {
   z-index: 2;
 }
 .main {
-  width: 100%;
-  flex-grow: 1;
+  flex: 1;
   display: flex;
-  justify-content: center;
   flex-direction: column;
 }
 .section + .section {
@@ -402,12 +401,13 @@ legend {
 }
 .main-container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 0 auto;
-  width: 760px;
-  padding: 90px 0;
-  gap: 40px;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: calc(100vh - 200px);
+}
+.section {
+  flex: 1;
+  padding: 20px;
 }
 .wide-section {
   width: 100%;
@@ -462,26 +462,29 @@ legend {
   gap: 20px;
 }
 .button {
-  height: 60px;
-  padding: 0 60px;
-  color: #fff;
-  border: 2px solid #ffffff;
+  display: inline-block;
+  padding: 12px 24px;
+  border-radius: 8px;
   font-size: 16px;
+  font-weight: 500;
   text-align: center;
-  white-space: nowrap;
-  vertical-align: middle;
-  font-weight: 700;
-  width: max-content;
-  display: flex;
-  align-items: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+}
+.button--yellow-white {
+  color: #fff;
+  background: #fbbb21;
+}
+.button--yellow-white:hover:not(:disabled) {
+  background: #e5a91c;
+}
+.button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
 }
 .button.button--yellow {
   color: #000;
-  background: #fbbb21;
-  border: none;
-}
-.button.button--yellow-white {
-  color: #fff;
   background: #fbbb21;
   border: none;
 }
@@ -494,13 +497,8 @@ legend {
   font-weight: 700;
 }
 .section__text-container {
-  padding: 45px 0 0;
-  display: flex;
-  flex-direction: column;
-  gap: 45px;
   text-align: center;
-  max-width: 960px;
-  margin: 0 auto;
+  margin-bottom: 30px;
 }
 .section__title {
   font-size: 52px;
@@ -1151,9 +1149,9 @@ html.dark .input-indicator:before {
   font-weight: 300;
 }
 .test-title {
-  font-weight: 600;
-  font-size: 42px;
-  text-align: center;
+  font-size: 24px;
+  font-weight: 700;
+  color: #333;
 }
 .test-text {
   font-size: 24px;

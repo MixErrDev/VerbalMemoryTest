@@ -7,7 +7,8 @@ import { InstructionComponent } from '../../../../shared/components/instruction/
   selector: 'verbal-instruction',
   standalone: true,
   imports: [InstructionComponent],
-  templateUrl: './instructionRu.component.html',
+  templateUrl: './instruction.component.html',
+  styleUrls: ['./instruction.component.css']
 })
 export class VerbalInstructionComponent implements OnInit{
   private button: any;
@@ -23,7 +24,7 @@ export class VerbalInstructionComponent implements OnInit{
 
 
   navigateToTrialStart(){
-    this.router.navigate(['/trial/start']);
+    this.router.navigate(['/verbal-memory/trial/start']);
   }
 }
 

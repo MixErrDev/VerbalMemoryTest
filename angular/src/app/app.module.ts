@@ -6,16 +6,25 @@ import { RouterModule, Routes } from '@angular/router';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { AppComponent } from './app.component';
+import { verbalTestRoutes } from './app.routes';
 
 const routes: Routes = [
+  {
+    path: 'verbal-memory',
+    children: verbalTestRoutes
+  },
   {
     path: 'visual-memory',
     loadChildren: () => import('./features/visual-memory/visual-memory.module').then(m => m.VisualMemoryModule)
   },
   {
     path: '',
-    redirectTo: 'visual-memory',
-    pathMatch: 'full' as const
+    redirectTo: 'verbal-memory',
+    pathMatch: 'full'
+  },
+  {
+    path: '**',
+    redirectTo: 'verbal-memory'
   }
 ];
 
@@ -26,7 +35,7 @@ const routes: Routes = [
   imports: [
     BrowserModule,
     HttpClientModule,
-    RouterModule.forRoot(routes),
+    RouterModule.forRoot(routes, { useHash: true }),
     CoreModule,
     SharedModule
   ],
